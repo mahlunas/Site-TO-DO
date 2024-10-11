@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gerenciador de Tarefas e Projetos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="navbar">
+        <button onclick="filterProjects('todos')">Todos</button>
+        <button onclick="filterProjects('escola')">Escola</button>
+        <button onclick="filterProjects('trabalho')">Trabalho</button>
+        <button onclick="filterProjects('pessoal')">Pessoal</button>
+    </div>
+
+    <div class="addProject">
+        <input type="text" id="projectName" placeholder="Nome do Projeto">
+        <select id="categorySelect">
+            <option value="escola">Escola</option>
+            <option value="trabalho">Trabalho</option>
+            <option value="pessoal">Pessoal</option>
+        </select>
+        <button id="addProjectBtn">Adicionar Projeto</button>
+    </div>
+    
+    <div id="projectList"></div>
+
+    <script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,44 @@
+body {
+    font-family: Arial, sans-serif; 
+    margin: 0;
+}
+.project {
+    margin-bottom: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+.task {
+    margin-left: 20px;
+}
+.completed {
+    text-decoration: line-through;
+}
+.progress-bar {
+    width: 100%;
+    background-color: #f0f0f0;
+}
+.progress {
+    background-color: #4caf50;
+    height: 20px;
+    width: 0;
+}
+
+.navbar{
+    display: flex;
+    background-color: #CD853F;
+    padding: 10px;
+}
+
+.navbar button{
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    margin-right: 10px;
+}
+
+.navbar button:hover{
+    background-color: #575757;
+}
