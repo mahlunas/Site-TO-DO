@@ -26,19 +26,33 @@ body {
 
 .navbar{
     display: flex;
-    background-color: #CD853F;
+    background-color: purple;
     padding: 10px;
 }
 
-.navbar button{
-    background-color: #333;
+.navbar{
+    display: flex;
+}
+
+ul{
+    list-style-type: none;
+    display: flex;
+    align-items: center;
+}
+
+li a{
+    text-decoration: none;
     color: white;
-    border: none;
-    padding: 10px;
-    cursor: pointer;
-    margin-right: 10px;
+    justify-content: space-between; 
+    padding-right: 10px;
 }
 
-.navbar button:hover{
-    background-color: #575757;
+li a:hover{
+    color: black;
+}
+
+.projectName{
+    border-radius: 100px;
+    border-color: black;
+    
 }
