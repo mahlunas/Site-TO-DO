@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (storedProjects) {
         projects = JSON.parse(storedProjects);
         renderProjects();
-        updateTaskList();
+        updateTaskList(); // Atualiza a lista de tarefas na sidebar ao carregar a página
     }
 });
 
@@ -16,14 +16,7 @@ function renderProjects(category = 'todos') {
     const projectList = document.getElementById('projectList');
     projectList.innerHTML = ''; // Limpar a lista de projetos
 
-    const projetosFiltrados = projects.filter(project =>{
-        if(category === 'todos'){
-            return true;
-        }
-
-        return project.category === category;
-    }
-    );
+    const projetosFiltrados = projects.filter(project => category === 'todos' || project.category === category);
 
     projetosFiltrados.forEach((project, projectIndex) => {
         const projectDiv = document.createElement('div');
@@ -79,7 +72,6 @@ function renderProjects(category = 'todos') {
         projectDiv.appendChild(removeProjectBtn);
 
         projectList.appendChild(projectDiv);
-
     });
 
     // Salvar os projetos no localStorage
@@ -99,7 +91,7 @@ document.getElementById('addProjectBtn').addEventListener('click', () => {
         });
         document.getElementById('projectName').value = ''; // Limpar o campo
         renderProjects();
-        updateTaskList();
+        updateTaskList(); // Atualiza a lista de tarefas
     }
 });
 
@@ -111,7 +103,7 @@ function addTask(projectIndex, taskTitle) {
             completed: false
         });
         renderProjects();
-        updateTaskList();
+        updateTaskList(); // Atualiza a lista de tarefas
     }
 }
 
@@ -119,28 +111,33 @@ function addTask(projectIndex, taskTitle) {
 function toggleTaskCompletion(projectIndex, taskIndex) {
     projects[projectIndex].tasks[taskIndex].completed = !projects[projectIndex].tasks[taskIndex].completed;
     renderProjects();
-    updateTaskList();
+    updateTaskList(); // Atualiza a lista de tarefas
 }
 
 // Função para remover projeto
 function removeProject(projectIndex) {
     projects.splice(projectIndex, 1);
     renderProjects();
-    updateTaskList();
+    updateTaskList(); // Atualiza a lista de tarefas
 }
 
-function filterProjects(category){
+// Função para filtrar projetos por categoria
+function filterProjects(category) {
     renderProjects(category);
 }
 
-function updateTaskList(){
-    const taskList = document.getElementById('task-list');
-    taskList.innerHTML = "";
+// Função para atualizar a sidebar com todas as tarefas de todos os projetos
+function updateTaskList() {
+    const taskList = document.getElementById("task-list");
+    taskList.innerHTML = ""; // Limpa a lista de tarefas
 
-    projects.forEach((project)=> {
-        project.tasks.forEach((task)=>{
+    projects.forEach((project) => {
+        project.tasks.forEach((task) => {
             const taskItem = document.createElement("li");
-            taskItem.textContent = `${task.title}`;
+            taskItem.textContent = `${project.name}: ${task.title}`;
+            if (task.completed) {
+                taskItem.classList.add('completed'); // Opcional: Estilo para tarefas concluídas
+            }
             taskList.appendChild(taskItem);
         });
     });
